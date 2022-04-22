@@ -16,4 +16,10 @@ jobs:
           run-step: false
       - name: Output ACR URL
         run: echo "The ACR URL is ${{ steps.acr.outputs.url }}"
- 
+  create-appgateway:
+    runs-on: ubuntu-latest
+    name: Create App Gateway
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy
+        run: echo "... app gateway stuff"
