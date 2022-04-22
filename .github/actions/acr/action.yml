@@ -1,0 +1,23 @@
+name: "Deploy an Azure Container Registry"
+description: "A composite action to deploy a new Azure Container Registry"
+inputs:
+  run-step:
+    required: true
+    default: true
+    description: "A sample conditional"
+  acr-name:
+    required: true
+    description: "The name of the ACR, must be unique"
+ outputs:
+   url:
+     description: "The URL of the newly created ACR"
+     value: ${{ steps.output-url.outputs.url }}
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Create ACR
+      run: echo "Creating ACR ${{ inputs.acr-name }}"
+    - name: Output URL
+      run: echo "::set-output name=url::$(echo ${{ inputs.acr-name }}.acr.io)"
+      
