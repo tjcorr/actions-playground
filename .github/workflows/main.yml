@@ -19,10 +19,10 @@ on:
 
 jobs:
   build-code:
-    if: ${{ inputs.build-code == true }}
+    if: ${{ github.event.inputs.build-code == true }}
     uses: ./.github/workflows/build-code.yml
   publish-code:
-    if: ${{ inputs.publish-code == true }}
+    if: ${{ always() }}
     uses: ./.github/workflows/publish-code.yml
   deploy-infra:
     if: ${{ inputs.deploy-infra == true }}
