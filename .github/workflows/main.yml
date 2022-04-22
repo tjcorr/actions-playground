@@ -18,15 +18,12 @@ on:
         default: false
 
 jobs:
-  create-acr:
-    runs-on: ubuntu-latest
-    name: Create ACR
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/actions/acr
-        id: acr
-        with: 
-          acr-name: 'myacr'
-          run-step: false
-      - name: Output ACR URL
-        run: echo "The ACR URL is ${{ steps.acr.outputs.url }}"
+  build-code:
+    if: inputs.build-code == true
+    uses: ./.github/workflows/build-code.yml
+  publish-code:
+    if: inputs.publish-code == true
+    uses: ./.github/workflows/publish-code.yml
+  deploy-infra:
+    if: inputs.deploy-infra == true
+    uses: ./.github/workflows/deploy-infra.yml
