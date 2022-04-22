@@ -1,5 +1,21 @@
 on: 
   workflow_dispatch:
+    inputs:
+      build-code:
+        description: 'Build the application'
+        required: true
+        type: boolean
+        default: true
+      publish-code:
+        description: 'Publish the application artifact'
+        required: true
+        type: boolean
+        default: false
+      deploy-infra:
+        description: 'Deploy the infrastructure to Azure'
+        required: true
+        type: boolean
+        default: false
 
 jobs:
   create-acr:
