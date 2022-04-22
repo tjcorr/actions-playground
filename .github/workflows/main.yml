@@ -8,5 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/acr
+        id: acr
         with: 
           acr-name: 'myacr'
+      - name: Output ACR URL
+        run: echo "The ACR URL is {{ steps.acr.outputs.url }}"
