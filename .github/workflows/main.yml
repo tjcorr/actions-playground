@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Create ACR
     steps:
-      - uses: actions/acr@latest
+      - uses: ./.github/actions/acr
         with: 
           acr-name: 'myacr'
