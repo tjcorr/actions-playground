@@ -8,10 +8,10 @@ inputs:
   acr-name:
     required: true
     description: "The name of the ACR, must be unique"
- outputs:
-   url:
-     description: "The URL of the newly created ACR"
-     value: ${{ steps.output-url.outputs.url }}
+outputs:
+  url:
+    description: "The URL of the newly created ACR"
+    value: ${{ steps.output-url.outputs.url }}
     
 runs:
   using: "composite"
