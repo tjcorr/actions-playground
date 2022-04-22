@@ -27,7 +27,3 @@ runs:
       id: output-url
       shell: bash
       run: echo "::set-output name=url::$(echo ${{ inputs.acr-name }}.acr.io)"
-      
-branding:
-  icon: 'cloud-lightning'
-  color: 'blue'
