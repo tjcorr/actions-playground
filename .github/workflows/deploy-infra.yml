@@ -2,9 +2,19 @@ name: Deploy Infrastructure
 
 on:
   workflow_call:
+    inputs:
+      create-acr:
+        required: true
+        type: boolean
+        default: true
+      create-appgateway:
+        required: true
+        type: boolean
+        default: true
  
 jobs:
   create-acr:
+    if: ${{ github.event.inputs.create-acr == 'true' }}
     runs-on: ubuntu-latest
     name: Create ACR
     steps:
@@ -17,6 +27,7 @@ jobs:
       - name: Output ACR URL
         run: echo "The ACR URL is ${{ steps.acr.outputs.url }}"
   create-appgateway:
+    if: ${{ github.event.inputs.create-appgateway == 'true' }}
     runs-on: ubuntu-latest
     name: Create App Gateway
     steps:
