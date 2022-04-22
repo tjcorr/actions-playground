@@ -24,6 +24,7 @@ runs:
       shell: bash
       run: echo "Run optional step"
     - name: Output URL
+      id: output-url
       shell: bash
       run: echo "::set-output name=url::$(echo ${{ inputs.acr-name }}.acr.io)"
       
