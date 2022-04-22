@@ -31,6 +31,6 @@ jobs:
       
   publish-code:
     needs: [build-code, deploy-infra]
-    if: ${{ github.event.inputs.publish-code == 'true' }}
+    if: ${{ always() && github.event.inputs.publish-code == 'true'}}
     uses: ./.github/workflows/publish-code.yml
 
