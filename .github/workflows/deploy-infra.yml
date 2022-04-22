@@ -13,7 +13,7 @@ on:
 
 jobs:
   create-acr:
-    if: ${{ github.event.inputs.create-acr == true }}
+    if: inputs.create-acr 
     runs-on: ubuntu-latest
     name: Create ACR
     steps:
@@ -26,7 +26,7 @@ jobs:
       - name: Output ACR URL
         run: echo "The ACR URL is ${{ steps.acr.outputs.url }}"
   create-appgateway:
-    if: ${{ inputs.create-appgateway == true }}
+    if: inputs.create-appgateway
     runs-on: ubuntu-latest
     name: Create App Gateway
     steps:
