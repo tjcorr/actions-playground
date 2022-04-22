@@ -17,7 +17,9 @@ runs:
   using: "composite"
   steps:
     - name: Create ACR
+      shell: bash
       run: echo "Creating ACR ${{ inputs.acr-name }}"
     - name: Output URL
+      shell: bash
       run: echo "::set-output name=url::$(echo ${{ inputs.acr-name }}.acr.io)"
       
