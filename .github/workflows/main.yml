@@ -22,8 +22,8 @@ jobs:
     if: ${{ github.event.inputs.build-code == 'true' }}
     uses: ./.github/workflows/build-code.yml
   publish-code:
-    if: ${{ always() }}
+    if: ${{ github.event.inputs.publish-code == 'true' }}
     uses: ./.github/workflows/publish-code.yml
   deploy-infra:
-    if: ${{ inputs.deploy-infra == 'true' }}
+    if: ${{ github.event.inputs.deploy-infra == 'true' }}
     uses: ./.github/workflows/deploy-infra.yml
