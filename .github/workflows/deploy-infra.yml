@@ -1,0 +1,19 @@
+name: Deploy Infrastructure
+
+on:
+  workflow_call:
+ 
+jobs:
+  create-acr:
+    runs-on: ubuntu-latest
+    name: Create ACR
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/acr
+        id: acr
+        with: 
+          acr-name: 'myacr'
+          run-step: false
+      - name: Output ACR URL
+        run: echo "The ACR URL is ${{ steps.acr.outputs.url }}"
+ 
