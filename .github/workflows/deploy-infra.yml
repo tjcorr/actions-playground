@@ -4,11 +4,9 @@ on:
   workflow_call:
     inputs:
       create-acr:
-        required: true
         type: boolean
         default: true
       create-appgateway:
-        required: true
         type: boolean
         default: true
  
