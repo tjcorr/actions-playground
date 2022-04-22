@@ -6,12 +6,11 @@ on:
       create-acr:
         required: true
         type: boolean
-        default: true
+
       create-appgateway:
         required: true
         type: boolean
-        default: true
- 
+
 jobs:
   create-acr:
     if: ${{ github.event.inputs.create-acr == 'true' }}
