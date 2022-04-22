@@ -19,6 +19,10 @@ runs:
     - name: Create ACR
       shell: bash
       run: echo "Creating ACR ${{ inputs.acr-name }}"
+    - name: Optional Step
+      if: ${{ inputs.run-step }}
+      shell: bash
+      run: echo "Run optional step"
     - name: Output URL
       shell: bash
       run: echo "::set-output name=url::$(echo ${{ inputs.acr-name }}.acr.io)"
