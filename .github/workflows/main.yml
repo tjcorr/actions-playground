@@ -21,12 +21,16 @@ jobs:
   build-code:
     if: ${{ github.event.inputs.build-code == 'true' }}
     uses: ./.github/workflows/build-code.yml
-  publish-code:
-    if: ${{ github.event.inputs.publish-code == 'true' }}
-    uses: ./.github/workflows/publish-code.yml
+    
   deploy-infra:
     if: ${{ github.event.inputs.deploy-infra == 'true' }}
     uses: ./.github/workflows/deploy-infra.yml
     with:
       create-acr: true
       create-appgateway: false
+      
+  publish-code:
+    needs: [build-code, deploy-infra]
+    if: ${{ github.event.inputs.publish-code == 'true' }}
+    uses: ./.github/workflows/publish-code.yml
+
