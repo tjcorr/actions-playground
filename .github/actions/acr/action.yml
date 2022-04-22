@@ -20,7 +20,7 @@ runs:
       shell: bash
       run: echo "Creating ACR ${{ inputs.acr-name }}"
     - name: Optional Step
-      if: ${{ inputs.run-step }}
+      if: ${{ inputs.run-step == true }}
       shell: bash
       run: echo "Run optional step"
     - name: Output URL
