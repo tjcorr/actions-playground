@@ -11,5 +11,6 @@ jobs:
         id: acr
         with: 
           acr-name: 'myacr'
+          run-step: false
       - name: Output ACR URL
         run: echo "The ACR URL is {{ steps.acr.outputs.url }}"
