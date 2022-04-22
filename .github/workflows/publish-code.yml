@@ -1,0 +1,12 @@
+name: Publiish Code
+
+on:
+  workflow_call:
+ 
+jobs:
+  build-code:
+    runs-on: ubuntu-latest
+    name: Publiish Code
+    steps:
+      - name: Publiish Code
+        run: echo "publishing code"
