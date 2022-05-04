@@ -16,18 +16,40 @@ on:
         required: true
         type: boolean
         default: false
+      env:
+        description: 'Which environment to deploy to'
+        required: true
+        type: string
 
 jobs:
+  parse-variables:
+    runs-on: ubuntu-latest
+    outputs: 
+      variables: ${{ steps.parse-variables.outputs.json }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/parse-variable
+        id: parse-variables
+        with: 
+          path: ".github/variables/var-${{ github.event.inputs.env }}.env"
+      - name: Output ACR Name
+        run: echo "The ACR name is ${{ steps.parse-variables.outputs.AcrName }}"
+      - name: Output ACR Name 2
+        run: echo "The ACR name is ${{fromJSON(steps.parse-variables.outputs.json).AcrName}}"
+    
   build-code:
+    needs: [parse-variables]
     if: ${{ github.event.inputs.build-code == 'true' }}
     uses: ./.github/workflows/build-code.yml
     
   deploy-infra:
+    needs: [parse-variables]
     if: ${{ github.event.inputs.deploy-infra == 'true' }}
     uses: ./.github/workflows/deploy-infra.yml
     with:
       create-acr: true
       create-appgateway: false
+      acr-name: ${{fromJSON(needs.parse-variables.outputs.variables).AcrName}}
       
   publish-code:
     needs: [build-code, deploy-infra]
