@@ -1,0 +1,24 @@
+name: "Parse Variables"
+description: "Parse environment variables from file"
+inputs:
+  file-path:
+    required: true
+    description: "The location of the environment variable file"
+outputs:
+  generic:
+    json: "A JSON object of all the parsed variables"
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Create ACR
+      shell: bash
+      run: echo "Creating ACR ${{ inputs.acr-name }}"
+    - name: Optional Step
+      if: ${{ inputs.run-step == true }}
+      shell: bash
+      run: echo "Run optional step"
+    - name: Output URL
+      id: output-url
+      shell: bash
+      run: echo "::set-output name=url::$(echo ${{ inputs.acr-name }}.acr.io)"
