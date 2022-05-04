@@ -22,7 +22,7 @@ try {
     );
   }
 
-  core.setOutput('json', 'please check for actual outputs');
+  core.setOutput('json', Object.fromEntries(variables));
 
   for (const key in variables) {
     const value = variables[key];
