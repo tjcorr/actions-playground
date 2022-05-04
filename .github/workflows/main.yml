@@ -31,7 +31,7 @@ jobs:
       - uses: ./.github/actions/parse-variable
         id: parse-variables
         with: 
-          path: ".github/variables/var-${{ github.event.inputs.env }}"
+          path: ".github/variables/var-${{ github.event.inputs.env }}.env"
           run-step: false
       - name: Output ACR Name
         run: echo "The ACR name is ${{ steps.parse-variables.outputs.AcrName }}"
