@@ -783,7 +783,7 @@ try {
     );
   }
 
-  core.setOutput('json', JSON.stringify(variables).replaceAll('"','\\"'));
+  core.setOutput('json', JSON.stringify(variables.replace(/"/g, '\\"'));
 
   for (const key in variables) {
     const value = variables[key];
