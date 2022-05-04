@@ -36,6 +36,10 @@ jobs:
       - name: Output ACR Name
         run: echo "The ACR name is ${{ steps.parse-variables.outputs.AcrName }}"
       - name: Output ACR Name 2
+        run: echo "The ACR name is ${{steps.parse-variables.outputs.json}}
+      - name: Output ACR Name 4
+        run: echo "The ACR name is ${{fromJSON(steps.parse-variables.outputs.json)}}
+      - name: Output ACR Name 4
         run: echo "The ACR name is ${{fromJSON(steps.parse-variables.outputs.json.AcrName)}}
     
   build-code:
