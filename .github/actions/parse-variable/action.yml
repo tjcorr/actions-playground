@@ -14,8 +14,8 @@ inputs:
     required: false
     default: 'false'
 outputs:
-  generic:
-    json: "A JSON object of all the parsed variables"
+  json:
+    description: "A JSON object of all the parsed variables"
     
 runs:
   using: 'node12'
