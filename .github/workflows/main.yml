@@ -50,7 +50,7 @@ jobs:
     with:
       create-acr: true
       create-appgateway: false
-      acr-name: ${{fromJSON(needs.parse-variables.output.variables).AcrName)}}
+      acr-name: ${{fromJSON(needs.parse-variables.output.variables).AcrName}}
       
   publish-code:
     needs: [build-code, deploy-infra]
