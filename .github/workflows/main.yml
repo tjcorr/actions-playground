@@ -32,7 +32,6 @@ jobs:
         id: parse-variables
         with: 
           path: ".github/variables/var-${{ github.event.inputs.env }}.env"
-          run-step: false
       - name: Output ACR Name
         run: echo "The ACR name is ${{ steps.parse-variables.outputs.AcrName }}"
       - name: Output ACR Name 2
@@ -50,7 +49,7 @@ jobs:
     with:
       create-acr: true
       create-appgateway: false
-      acr-name: ${{fromJSON(needs.parse-variables.output.variables).AcrName}}
+      acr-name: ${{fromJSON(needs.parse-variables.outputs.variables).AcrName}}
       
   publish-code:
     needs: [build-code, deploy-infra]
