@@ -16,8 +16,14 @@ on:
         required: true
         type: boolean
         default: false
+      env:
+        description: 'Which environment to deploy to'
+        required: true
+        type: string
 
 jobs:
+  parse-variables:
+    
   build-code:
     if: ${{ github.event.inputs.build-code == 'true' }}
     uses: ./.github/workflows/build-code.yml
