@@ -18,5 +18,5 @@ outputs:
     description: "A JSON object of all the parsed variables"
     
 runs:
-  using: 'node16'
+  using: 'node12'
   main: 'dist/index.js'
