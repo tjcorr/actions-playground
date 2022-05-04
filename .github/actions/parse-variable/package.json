@@ -1,48 +1,36 @@
 {
-  "name": "dotenv-expand",
-  "version": "8.0.3",
-  "description": "Expand environment variables using dotenv",
-  "main": "lib/main.js",
-  "types": "lib/main.d.ts",
-  "exports": {
-    ".": {
-      "require": "./lib/main.js",
-      "types": "./lib/main.d.ts",
-      "default": "./lib/main.js"
-    },
-    "./config": "./config.js",
-    "./config.js": "./config.js",
-    "./package.json": "./package.json"
-  },
+  "name": "dotenv-action",
+  "version": "1.0.0",
+  "description": "Load variables from a .env file",
+  "main": "index.js",
   "scripts": {
-    "dts-check": "tsc --project tests/types/tsconfig.json",
-    "lint": "standard",
-    "pretest": "npm run lint && npm run dts-check",
-    "test": "lab tests --coverage"
+    "lint": "eslint index.js",
+    "package": "ncc build index.js -o dist",
+    "test": "eslint index.js && jest"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/motdotla/dotenv-expand"
+    "url": "git+https://github.com/falti/dotenv-action.git"
   },
-  "author": "motdotla",
   "keywords": [
-    "dotenv",
-    "expand",
-    "variables",
-    "env",
-    ".env"
+    "GitHub",
+    "Actions",
+    "JavaScript"
   ],
-  "readmeFilename": "README.md",
-  "license": "BSD-2-Clause",
-  "devDependencies": {
-    "@types/node": "^17.0.8",
-    "dotenv": "^16.0.0",
-    "lab": "^14.3.4",
-    "should": "^11.2.1",
-    "standard": "^16.0.4",
-    "typescript": "^4.5.4"
+  "author": "GitHub",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/falti/dotenv-action/issues"
   },
-  "engines": {
-    "node": ">=12"
+  "homepage": "https://github.com/falti/dotenv-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^8.0.3"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.22.1",
+    "eslint": "^6.8",
+    "jest": "^27.0"
   }
 }
