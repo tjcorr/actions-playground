@@ -783,7 +783,7 @@ try {
     );
   }
 
-  core.setOutput('json', Object.fromEntries(variables));
+  core.setOutput('json', variables);
 
   for (const key in variables) {
     const value = variables[key];
