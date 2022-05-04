@@ -25,7 +25,7 @@ jobs:
       - uses: ./.github/actions/acr
         id: acr
         with: 
-          acr-name: inputs.acr-name
+          acr-name: ${{ github.event.inputs.acr-name }}
           run-step: false
       - name: Output ACR URL
         run: echo "The ACR URL is ${{ steps.acr.outputs.url }}"
