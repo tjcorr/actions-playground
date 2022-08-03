@@ -26,6 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs: 
       variables: ${{ steps.parse-variables.outputs.json }}
+      runstage: ${{ steps.parse-variables.outputs.RunStage }}
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/parse-variable
@@ -36,6 +37,20 @@ jobs:
         run: echo "The ACR name is ${{ steps.parse-variables.outputs.AcrName }}"
       - name: Output ACR Name 2
         run: echo "The ACR name is ${{fromJSON(steps.parse-variables.outputs.json).AcrName}}"
+  
+  conditional-stage:
+    runs-on: ubuntu-latest
+    if: ${{fromJSON(needs.parse-variables.outputs.variables).RunStage == 'true'}}
+    needs: [parse-variables]
+    steps: 
+      - run: echo "running the conditional stage"
+      
+  conditional-stage-2:
+    runs-on: ubuntu-latest
+    if: ${{needs.parse-variables.outputs.runstage == 'true'}}
+    needs: [parse-variables]
+    steps: 
+      - run: echo "running the conditional stage"
     
   build-code:
     needs: [parse-variables]
