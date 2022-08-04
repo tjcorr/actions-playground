@@ -19,14 +19,12 @@ on:
 jobs:
 
   build-code:
-    needs: [parse-variables]
     if: ${{ github.event.inputs.build-code == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo build
     
   deploy-infra:
-    needs: [parse-variables]
     if: ${{ github.event.inputs.deploy-infra == 'true' }}
     runs-on: ubuntu-latest
     steps:
