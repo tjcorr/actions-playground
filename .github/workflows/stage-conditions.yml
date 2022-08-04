@@ -32,7 +32,7 @@ jobs:
       
   publish-code:
     needs: [build-code, deploy-infra]
-    if: ${{ always() && github.event.inputs.publish-code == 'true'}}
+    if: ${{ github.event.inputs.publish-code == 'true'}}
     runs-on: ubuntu-latest
     steps:
       - run: echo publish
