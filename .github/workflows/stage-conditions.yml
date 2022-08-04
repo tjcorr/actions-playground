@@ -1,0 +1,40 @@
+on: 
+  workflow_dispatch:
+    inputs:
+      build-code:
+        description: 'Build the application'
+        required: true
+        type: boolean
+        default: true
+      publish-code:
+        description: 'Publish the application artifact'
+        required: true
+        type: boolean
+        default: false
+      deploy-infra:
+        description: 'Deploy the infrastructure to Azure'
+        required: true
+        type: boolean
+        default: false
+jobs:
+
+  build-code:
+    needs: [parse-variables]
+    if: ${{ github.event.inputs.build-code == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo build
+    
+  deploy-infra:
+    needs: [parse-variables]
+    if: ${{ github.event.inputs.deploy-infra == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo deploy
+      
+  publish-code:
+    needs: [build-code, deploy-infra]
+    if: ${{ always() && github.event.inputs.publish-code == 'true'}}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo publish
