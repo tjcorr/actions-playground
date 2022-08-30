@@ -8,5 +8,5 @@ jobs:
       - name: install pac
         run: |
           curl.exe -L --output pac.msi --url https://aka.ms/PowerAppsCLI
-          msiexec /i /qn pac.msi
+          msiexec /qn /i pac.msi
           pac --help
