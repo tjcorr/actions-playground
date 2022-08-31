@@ -9,4 +9,6 @@ jobs:
         run: |
           curl.exe -L --output pac.msi --url https://aka.ms/PowerAppsCLI
           msiexec /qn /i pac.msi
-          pac --help
+      - name: test pac
+        run: pac --help
+        shell: pwsh
