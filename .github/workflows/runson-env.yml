@@ -13,7 +13,7 @@ jobs:
       os: ${{ steps.env.outputs.env }}
     steps: 
     - name: env
-      run: echo "::set-output name=env::$OS"
+      run: echo "::set-output name=env::$(echo $OS)"
   test:
     needs: [ setup ]
     runs-on: ${{ needs.setup.outputs.os }}
