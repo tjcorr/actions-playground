@@ -1,0 +1,13 @@
+name: Runs On with Environment Variable
+
+on:
+  workflow_dispatch:
+  
+env:
+  os: ubuntu-latest
+  
+jobs:
+  test:
+    runs-on: ${{ env.os }}
+    steps:
+    - run: echo hello
