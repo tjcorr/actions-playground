@@ -4,10 +4,18 @@ on:
   workflow_dispatch:
   
 env:
-  os: ubuntu-latest
+  OS: ubuntu-latest
   
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      os: ${{ steps.env.outputs.env }}
+    steps: 
+    - name: env
+      run: echo "::set-output name=env::$OS"
   test:
-    runs-on: ${{ env.os }}
+    needs: [ setup ]
+    runs-on: ${{ needs.setup.outputs.os }}
     steps:
     - run: echo hello
