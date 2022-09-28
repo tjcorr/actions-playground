@@ -14,7 +14,7 @@ jobs:
     steps: 
     - name: env
       id: env
-      run: echo "::set-output name=env::ubuntu-latest"
+      run: echo "::set-output name=env::$OS"
   test:
     needs: [ setup ]
     runs-on: ${{ needs.setup.outputs.os }}
